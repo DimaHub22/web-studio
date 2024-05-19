@@ -1,0 +1,26 @@
+@import "../../../../assets/styles/fonts";
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.agreement {
+  margin-top: 50px;
+
+  .container {
+    .agreement-text {
+      font-family: 'Montserrat', sans-serif;
+      padding-bottom: 50px;
+
+      h3 {
+        margin-top: 60px;
+        color: $text-color-blue;
+      }
+
+      p {
+        margin-top: 20px;
+        font-size: 14px;
+        line-height: 130%;
+        color: $text-color-dark;
+      }
+    }
+  }
+}

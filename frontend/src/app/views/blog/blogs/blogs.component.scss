@@ -1,0 +1,184 @@
+@import "../../../../assets/styles/fonts";
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.blog {
+  margin-top: 80px;
+  margin-bottom: 120px;
+
+  .container {
+
+    .blog-title {
+      @include head-lora-38;
+      line-height: 49px;
+      margin-bottom: 40px;
+    }
+
+    .blog-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 40px;
+
+      .blog-applied-filters {
+        display: flex;
+        flex-wrap: wrap;
+        font-family: 'Montserrat', sans-serif;
+
+        .blog-applied-filter {
+          margin-right: 20px;
+          margin-bottom: 20px;
+          border: 2px solid $text-color-blue;
+          border-radius: 5px;
+          padding: 8px 20px;
+
+          display: flex;
+          align-items: center;
+          grid-gap: 8px;
+
+          span {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20.8px;
+            color: $text-color-blue;
+          }
+
+          a {
+            cursor: pointer;
+            font-size: 0;
+          }
+        }
+      }
+
+      .blog-sorting {
+        width: 148px;
+        //width: 257px;
+        box-sizing: border-box;
+        position: relative;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+
+        .blog-sorting-head {
+          //width: 148px;
+          font-weight: 400;
+          padding: 12px 0 12px 23px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          span {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20.8px;
+            color: $text-color-dark;
+          }
+
+          a {
+            cursor: pointer;
+            font-size: 0;
+          }
+        }
+
+        .catalog-sorting-body {
+          border: 2px solid $background-color-blue;
+          box-sizing: border-box;
+          background: white;
+          position: absolute;
+          width: 100%;
+          z-index: 3;
+          display: none;
+          padding: 12px 23px;
+          border-radius: 0 0 5px 5px;
+
+          font-weight: 400;
+          line-height: 20.8px;
+
+          .catalog-sorting-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &.active {
+              color: $text-color-dark;
+            }
+          }
+
+          .catalog-sorting-item {
+            cursor: pointer;
+            margin-bottom: 14px;
+            color: rgba(190, 190, 190, 1);
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        &.open {
+          width: 257px;
+            .blog-sorting-head {
+              //box-sizing: border-box;
+              background: $background-color-blue;
+              border-radius: 5px 5px 0 0;
+              padding-right: 23px;
+            }
+
+            .catalog-sorting-body {
+              display: block;
+            }
+
+        }
+      }
+    }
+
+    .catalog-blogs {
+      display: flex;
+      grid-gap:40px 24px;
+      //justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .pagination {
+      margin-top: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .pagination-arrow {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+      }
+
+      .pagination-pages {
+        margin-left: 40px;
+        margin-right: 40px;
+        display: flex;
+        align-items: center;
+
+        .pagination-page {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 20px;
+          cursor: pointer;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 20px;
+          font-weight: 400;
+          line-height: 26px;
+          color: $text-color-dark;
+
+          &.active {
+            color: $background-color-blue;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}

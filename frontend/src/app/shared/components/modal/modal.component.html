@@ -1,0 +1,67 @@
+<div class="popup" *ngIf="!success">
+  <div class="popup-title">
+    {{data.consultation ? 'Закажите бесплатную консультацию!' : 'Заявка на услугу'}}
+  </div>
+
+  <form class="popup-form" [formGroup]="formPopup" (ngSubmit)="sendForm()" *ngIf="!success">
+
+    <div class="input-form" *ngIf="!data.consultation && services.length <= 0">
+      <input class="input" type="text" formControlName="title"
+             [readonly]="formPopup.get('title')">
+    </div>
+
+    <div class="input-form" *ngIf="!data.consultation && services.length > 0">
+      <select class="input" formControlName="title">
+        <option [ngValue]="service.title" *ngFor="let service of services">{{service.title}}</option>
+      </select>
+    </div>
+
+
+    <div class="input-form">
+      <input class="input" type="text" placeholder="Ваше имя" formControlName="name"
+             [ngStyle]="{'border-color': formPopup.get('name')?.invalid
+               && (formPopup.get('name')?.dirty || formPopup.get('name')?.touched) ? 'red' : ''}"
+      >
+    </div>
+    <div class="input-form">
+      <input class="input" type="text" placeholder="Ваш номер телефона" formControlName="phone"
+             [prefix]="'+7'"
+             [mask]="' (000) 000 00 00'"
+             [ngStyle]="{'border-color': formPopup.get('phone')?.invalid
+               && (formPopup.get('phone')?.dirty || formPopup.get('phone')?.touched) ? 'red' : ''}"
+      >
+    </div>
+
+    <div class="popup-action">
+      <button class="button" [disabled]="formPopup.invalid">
+        Оставить заявку
+      </button>
+    </div>
+
+  </form>
+
+  <div class="close-popup" (click)="closePopup()">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="1.93562" y1="2.64999" x2="13.9564" y2="14.6708" stroke="#BEBEBE" stroke-linecap="round"/>
+      <line x1="13.9236" y1="2.62978" x2="1.90277" y2="14.6506" stroke="#BEBEBE" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+<div class="popup popup-thank-you" *ngIf="success">
+  <div class="popup-title">
+    Спасибо за вашу заявку!
+  </div>
+  <div class="popup-thank-you-description">
+    Мы свяжемся с вами при первой же возможности.
+  </div>
+  <div class="popup-thank-you-action">
+    <button class="button" (click)="closePopup()">Окей</button>
+  </div>
+
+  <div class="close-popup" (click)="closePopup()">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="1.93562" y1="2.64999" x2="13.9564" y2="14.6708" stroke="#BEBEBE" stroke-linecap="round"/>
+      <line x1="13.9236" y1="2.62978" x2="1.90277" y2="14.6506" stroke="#BEBEBE" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>

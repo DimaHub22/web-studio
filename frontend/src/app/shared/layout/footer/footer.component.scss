@@ -1,0 +1,104 @@
+@import "../../../../assets/styles/fonts";
+@import "../../../../assets/styles/variables";
+
+.footer {
+  background: $background-color-blue;
+  padding-top: 40px;
+  padding-bottom: 54px;
+
+  .container {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+
+      .nav-items {
+        margin-left: 40px;
+        font-weight: 400;
+
+        .nav-menu {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          grid-gap: 20px;
+
+          .nav-menu-item {
+            list-style: none;
+
+            .nav-menu-item-link {
+              text-decoration: none;
+              color: $text-color-dark;
+            }
+          }
+        }
+      }
+    }
+
+    .footer-contact-items {
+      display: flex;
+      align-items: baseline;
+      grid-gap: 60px;
+      margin-bottom: 6px;
+
+      .footer-contact-item {
+
+        &:first-child {
+          width: 253px;
+        }
+
+        .footer-contact-title {
+          font-weight: 500;
+          color: $text-color-blue;
+          margin-bottom: 10px;
+        }
+
+        &:last-child .footer-contact-title {
+          margin-bottom: 15px;
+        }
+
+        .footer-contact-text {
+          &.footer-phone {
+            a{
+              text-decoration: none;
+              color: $text-color-dark;
+            }
+            margin-bottom: 10px;
+          }
+
+          a {
+            text-decoration: none;
+            color: $text-color-dark;
+          }
+        }
+
+        &:first-child .footer-contact-text {
+          line-height: 20.8px;
+        }
+
+        .footer-contact-icons {
+          display: flex;
+          align-items: center;
+          grid-gap: 12px;
+        }
+      }
+
+      .footer-contact-action {
+        .button {
+          width: 153px;
+          font-size: 12px;
+          font-weight: 500;
+          padding: 10px 20px;
+        }
+      }
+    }
+
+    .footer-rights {
+      font-weight: 400;
+      color: $text-color-blue;
+    }
+  }
+}

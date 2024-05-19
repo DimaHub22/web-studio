@@ -1,0 +1,48 @@
+@import "variables";
+@import "fonts";
+@import "global";
+@import "mixins";
+
+//html, body { height: 100%; }
+//body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.article-content {
+  width: 818px;
+  margin-bottom: 60px;
+  h1{
+    @include head-lora-38;
+    line-height: 49px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+    color: $text-color-blue;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18.2px;
+    color: $text-color-dark;
+    margin-bottom: 20px;
+  }
+  ol{
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18.2px;
+    color: $text-color-dark;
+  }
+  ul{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18.2px;
+    color: $text-color-dark;
+  }
+
+}

@@ -1,0 +1,42 @@
+<section class="login" [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="container">
+
+    <form class="auth-form" >
+      <div class="auth-title">
+        Войти в личный кабинет
+      </div>
+      <div class="auth-inputs">
+        <div class="auth-input">
+          <input type="text" class="input" formControlName="email"
+                 [ngStyle]="{'border-color': loginForm.get('email')?.invalid
+                  && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty) ? 'red' : ''}"
+                 placeholder="Электронная почта">
+        </div>
+        <div class="auth-input">
+          <input [type]="eyeViews ? 'text' : 'password'" class="input" formControlName="password"
+                 [ngStyle]="{'border-color': loginForm.get('password')?.invalid
+                  && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty) ? 'red' : ''}"
+                 placeholder="Пароль">
+          <span class="eye-icon" (click)="viewspass()">
+            <img src="assets/images/page/eye-close.svg" alt="Eye" *ngIf="!eyeViews">
+             <img src="assets/images/page/eye_open.svg" alt="Eye" *ngIf="eyeViews">
+          </span>
+        </div>
+        <div class="auth-checkbox">
+          <input type="checkbox" id="remember" formControlName="rememberMe">
+          <label for="remember">Запомнить меня</label>
+        </div>
+      </div>
+
+      <div class="auth-button">
+        <button class="button" [disabled]="loginForm.invalid">Войти</button>
+      </div>
+      <div class="auth-link">
+        Нет аккаунта? <a routerLink="/signup">Пройдите регистрацию</a>
+      </div>
+    </form>
+    <div class="page-image">
+      <img src="assets/images/page/login-img.png" alt="image">
+    </div>
+  </div>
+</section>

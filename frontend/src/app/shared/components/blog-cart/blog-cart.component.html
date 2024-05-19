@@ -1,0 +1,24 @@
+<div class="article-item" *ngIf="article">
+  <div class="article-item-image"
+       style="background-image: url({{path + article.image}})">
+
+    <div class="article-btn">
+      <button class="article-button">{{article.category}}</button>
+    </div>
+
+  </div>
+
+  <div class="article-item-title">
+    {{article.title}}
+  </div>
+
+  <div class="article-item-description">
+    {{article.description}}
+  </div>
+
+  <div class="article-item-action">
+    <a routerLink="/article" [queryParams]="{article:article.url}">Читать дальше</a>
+  </div>
+
+
+</div>

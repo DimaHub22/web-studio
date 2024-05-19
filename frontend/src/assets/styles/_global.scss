@@ -1,0 +1,107 @@
+@import "variables";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+h1,h3,p {
+  margin: 0;
+}
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+}
+
+app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  app-header {
+    flex: 0;
+  }
+
+  app-main,
+  app-login,
+  app-signup,
+  app-blogs,
+  app-article{
+    flex: 1;
+  }
+
+  app-footer {
+    flex: 0;
+  }
+}
+
+.owl-theme .owl-dots{
+  position: absolute;
+  bottom: 11px;
+  right: 581px;
+  .owl-dot span{
+    border: 1px solid white;
+    background: transparent;
+  }
+}
+
+.owl-theme .owl-dots .owl-dot.active span{
+  background: white;
+}
+
+.owl-theme .owl-dots .owl-dot:hover span{
+  background: white;
+}
+
+
+.button {
+  background-color: rgba(112, 159, 220, 1);
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  color: rgba(255, 255, 255, 1);
+  &:disabled {
+    background: gray;
+    cursor: not-allowed;
+  }
+}
+
+.cdk-overlay-pane .mat-dialog-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:727px ;
+  height: 489px;
+  border-radius: 10px;
+  border: 1.5px solid $background-color-blue;
+}
+
+.mat-snack-bar-container {
+  //background: red;
+  background: rgba(112, 159, 220, 1);
+  .mat-simple-snackbar{
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+  }
+}
+
+button.mat-menu-item{
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:400;
+  color:$text-color-blue;
+}
+.cdk-overlay-pane .mat-menu-panel{
+  min-height: auto;
+
+  .mat-menu-content:not(:empty){
+    padding:0;
+  }
+
+}
+
+

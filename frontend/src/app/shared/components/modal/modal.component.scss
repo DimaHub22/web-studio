@@ -1,0 +1,88 @@
+@import "../../../../assets/styles/fonts";
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.popup {
+  width: 422px;
+  position: relative;
+
+  &.popup-thank-you {
+    width: 443px;
+
+    .close-popup{
+      top: -135px;
+    }
+  }
+
+  .popup-title {
+    text-align: center;
+    @include head-lora-38;
+    line-height: 49px;
+    margin-bottom: 20px;
+  }
+
+  .popup-thank-you-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18.2px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .popup-form {
+    .input-form {
+      margin-bottom: 5px;
+
+      .input {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 17px 20px;
+        border-radius: 3px;
+        border: 1.5px solid $background-color-blue;
+
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18.2px;
+        color: $text-color-blue;
+        outline: none;
+
+        &::placeholder {
+          color: rgba(168, 171, 167, 1);
+        }
+      }
+
+    }
+
+    .popup-action {
+      margin-top: 15px;
+
+      .button {
+        font-size: 16px;
+        font-weight: 400;
+        width: 100%;
+        padding: 15px;
+        text-align: center;
+      }
+    }
+
+  }
+
+  .popup-thank-you-action {
+    text-align: center;
+    .button {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 10px 20px;
+      text-align: center;
+    }
+  }
+
+  .close-popup {
+    position: absolute;
+    top: -62px;
+    right: -121px;
+    cursor: pointer;
+  }
+}
