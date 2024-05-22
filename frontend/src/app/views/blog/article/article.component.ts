@@ -83,7 +83,6 @@ export class ArticleComponent implements OnInit {
   getArticle(article: string) {
     this.articleService.getArticle(article)
       .subscribe(data => {
-
         this.article = data
         this.commentMore = (this.article.commentsCount <= 3)
 
@@ -162,6 +161,8 @@ export class ArticleComponent implements OnInit {
 
   applyAction(action: string, id: string) {
     if (this.isLogged) {
+
+
       this.commentService.applyAction(action, id)
         .subscribe({
           next: (data: DefaultResponseType) => {
@@ -177,14 +178,31 @@ export class ArticleComponent implements OnInit {
 
             this.commentService.getAction(id)
               .subscribe(data => {
-                const action = data as ActionType[]
+                const actions = data as ActionType[]
 
+                let actionId = ''
+
+                this.article.comments.forEach(el => {
+
+                  const action = actions.find(item => item.comment === el.id)
+
+                  actionId = action ? action.comment : '';
+                  el.action = action ? action.action : '';
+
+
+                  this.articleService.getArticle(this.article.url)
+                    .subscribe(data => {
+
+
+                    })
+
+                })
 
               })
 
             /////////////////////////
 
-            this.getArticle(this.article.url)
+            // this.getArticle(this.article.url)
           },
           error: (error: HttpErrorResponse) => {
             this._snackBar.open('Жалоба уже отправлена')

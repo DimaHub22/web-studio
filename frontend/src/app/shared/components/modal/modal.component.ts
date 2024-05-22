@@ -21,7 +21,7 @@ export class ModalComponent implements OnInit{
 
   formPopup = this.fb.group({
     title: [''],
-    name: ['', [Validators.required]],
+    name: ['', [Validators.required,Validators.pattern(/^[а-яА-ЯёЁa-zA-Z]+$/)]],
     phone: ['', [Validators.required]]
     // phone: ['', [Validators.required, Validators.pattern(/^(\+)?((\d{2,3}) ?\d|\d)(([ -]?\d)|( ?(\d{2,3}) ?)){5,12}\d$/)]]
   })

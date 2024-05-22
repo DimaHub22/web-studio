@@ -23,6 +23,16 @@
                && (formPopup.get('name')?.dirty || formPopup.get('name')?.touched) ? 'red' : ''}"
       >
     </div>
+    <div class="errors">
+      <div class="error"
+           *ngIf="formPopup.get('name')?.invalid && (formPopup.get('name')?.dirty || formPopup.get('name')?.touched) ">
+        Введите имя.
+      </div>
+      <div class="error" *ngIf="formPopup.get('name')?.errors?.['pattern']">
+        Вводите только буквы.
+      </div>
+    </div>
+
     <div class="input-form">
       <input class="input" type="text" placeholder="Ваш номер телефона" formControlName="phone"
              [prefix]="'+7'"
@@ -30,6 +40,10 @@
              [ngStyle]="{'border-color': formPopup.get('phone')?.invalid
                && (formPopup.get('phone')?.dirty || formPopup.get('phone')?.touched) ? 'red' : ''}"
       >
+    </div>
+    <div class="error"
+         *ngIf="formPopup.get('phone')?.invalid && (formPopup.get('phone')?.dirty || formPopup.get('phone')?.touched) ">
+      Введите номер тлефона
     </div>
 
     <div class="popup-action">

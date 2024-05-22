@@ -9,7 +9,7 @@
   &.popup-thank-you {
     width: 443px;
 
-    .close-popup{
+    .close-popup {
       top: -135px;
     }
   }
@@ -55,6 +55,24 @@
 
     }
 
+    .errors {
+      display: flex;
+      grid-gap: 5px;
+
+      .error {
+        font-family: 'Montserrat', sans-serif;
+        color: red;
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+    }
+
+    .error {
+      font-family: 'Montserrat', sans-serif;
+      color: red;
+      font-size: 12px;
+    }
+
     .popup-action {
       margin-top: 15px;
 
@@ -71,6 +89,7 @@
 
   .popup-thank-you-action {
     text-align: center;
+
     .button {
       font-size: 12px;
       font-weight: 500;
