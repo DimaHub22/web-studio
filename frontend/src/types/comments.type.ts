@@ -13,4 +13,7 @@ export type CommentsType = {
     name: string
   },
   action:string
+ actionLike:string,
+  actionDislike:string
+
 }

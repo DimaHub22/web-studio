@@ -80,7 +80,7 @@
               </div>
 
               <div class="send-comment">
-                <button class="button " (click)="sendComment()">Опубликовать комментарий</button>
+                <button class="button" [disabled]="commentTextarea.invalid" (click)="sendComment()">Опубликовать комментарий</button>
               </div>
             </div>
 
@@ -114,11 +114,11 @@
 
 
                     <span
-                      [ngStyle]="{'color': comment.action === 'like' ? 'rgba(112, 159, 220, 1)' : ''}">{{comment.likesCount}}</span>
+                      [ngStyle]="{'color': comment.actionLike ? 'rgba(112, 159, 220, 1)' : ''}">{{comment.likesCount}}</span>
 
                     <span
-                      [class.icon-action]=" comment.action === 'like'"
-                      (click)="applyAction('like', comment.id)">
+                      [class.icon-action]=" comment.actionLike"
+                      (click)="applyAction(commentAction.like, comment.id)">
 
                       <svg
                         width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -135,10 +135,10 @@
 
                   <div class="dislike icon-like">
                     <span
-                      [ngStyle]="{'color': comment.action === 'dislike' ? 'rgba(112, 159, 220, 1)' : ''}">{{comment.dislikesCount}}</span>
+                      [ngStyle]="{'color': comment.actionDislike ? 'rgba(112, 159, 220, 1)' : ''}">{{comment.dislikesCount}}</span>
                     <span
-                      [class.icon-action]="comment.action === 'dislike'"
-                      (click)="applyAction('dislike',comment.id)">
+                      [class.icon-action]="comment.actionDislike"
+                      (click)="applyAction(commentAction.dislike, comment.id)">
                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M16.5197 5.65002L13.4197 3.25002C13.0197 2.85002 12.1197 2.65002 11.5197 2.65002H7.71973C6.51973 2.65002 5.21973 3.55002 4.91973 4.75002L2.51973 12.05C2.01973 13.45 2.91973 14.65 4.41973 14.65H8.41973C9.01973 14.65 9.51973 15.15 9.41973 15.85L8.91973 19.05C8.71973 19.95 9.31973 20.95 10.2197 21.25C11.0197 21.55 12.0197 21.15 12.4197 20.55L16.5197 14.45"
@@ -151,7 +151,7 @@
                   </div>
 
                   <div class="spam">
-                    <span (click)="applyAction('violate',comment.id)">
+                    <span (click)="applyAction(commentAction.violate ,comment.id)">
                         <svg width="24" height="24" viewBox="0 0 24 24"
                              fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"

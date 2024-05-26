@@ -14,6 +14,12 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {HttpErrorResponse} from "@angular/common/http";
 
 
+enum ActionComment {
+  like = 'like',
+  dislike = 'dislike',
+  violate = 'violate'
+}
+
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
@@ -23,12 +29,9 @@ export class ArticleComponent implements OnInit {
   article: ArticleType
   popularArticles: PopularArticleTypes[] = []
   path: string = environment.path
-
   comments: CommentsType[] = []
   isLogged: boolean = false
   accessToken: string | null = null
-
-  commentAction: ActionType[] = [{comment: '', action: ''}]
   commentActions: ActionType[] = []
 
   commentMore: boolean = false
@@ -38,6 +41,7 @@ export class ArticleComponent implements OnInit {
 
   count: number = 3
   loader: boolean = false
+  public commentAction = ActionComment
 
   constructor(private articleService: ArticleService,
               private activatedRouter: ActivatedRoute,
@@ -60,10 +64,12 @@ export class ArticleComponent implements OnInit {
       category: '',
       url: ''
     }
+
   }
 
-  ngOnInit(): void {
 
+
+  ngOnInit(): void {
 
     this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
       this.isLogged = isLoggedIn
@@ -101,7 +107,13 @@ export class ArticleComponent implements OnInit {
           this.article.comments.map(item => {
             this.commentActions.forEach(el => {
               if (item.id === el.comment) {
-                item.action = el.action
+
+                if (el.action === this.commentAction.like) {
+                  item.actionLike = el.action
+                } else {
+                  item.actionDislike = el.action
+                }
+
               }
             })
           })
@@ -159,16 +171,14 @@ export class ArticleComponent implements OnInit {
 
   }
 
-  applyAction(action: string, id: string) {
+  applyAction(actionComment: string, id: string) {
     if (this.isLogged) {
 
-
-      this.commentService.applyAction(action, id)
+      this.commentService.applyAction(actionComment, id)
         .subscribe({
           next: (data: DefaultResponseType) => {
 
-
-            if (action === 'violate') {
+            if (actionComment === this.commentAction.violate) {
               this._snackBar.open('Жалоба отправлена')
             } else {
               this._snackBar.open('Ваш голос учтен')
@@ -180,21 +190,40 @@ export class ArticleComponent implements OnInit {
               .subscribe(data => {
                 const actions = data as ActionType[]
 
-                let actionId = ''
 
                 this.article.comments.forEach(el => {
-
                   const action = actions.find(item => item.comment === el.id)
 
-                  actionId = action ? action.comment : '';
-                  el.action = action ? action.action : '';
+                  if (el.id === id) {
 
+                    if (action && action.action === this.commentAction.like) {
+                     el.likesCount++
 
-                  this.articleService.getArticle(this.article.url)
-                    .subscribe(data => {
+                      if (el.actionDislike) {
+                        el.dislikesCount--
+                      }
 
+                    }
+                    if (!action && el.id === id && actionComment === this.commentAction.like && el.likesCount > 0) {
+                      el.likesCount--
+                    }
 
-                    })
+                    if (action && action.action === this.commentAction.dislike) {
+                      el.dislikesCount++
+                      if (el.actionLike) {
+                        el.likesCount--
+                      }
+                    }
+
+                    if (!action && el.id === id && actionComment === this.commentAction.dislike && el.dislikesCount > 0) {
+                      el.dislikesCount--
+                    }
+
+                    el.actionLike = action && action.action === this.commentAction.like ? action.action : '';
+                    el.actionDislike = action && action.action === this.commentAction.dislike ? action.action : '';
+
+                  }
+
 
                 })
 
@@ -202,7 +231,6 @@ export class ArticleComponent implements OnInit {
 
             /////////////////////////
 
-            // this.getArticle(this.article.url)
           },
           error: (error: HttpErrorResponse) => {
             this._snackBar.open('Жалоба уже отправлена')
